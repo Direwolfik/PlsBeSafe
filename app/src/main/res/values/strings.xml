@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">PlsBeSafe</string>
+    <string name="app_title">PlsBeSafe</string>
+    <string name="notSupported">This can\'t be tested (functionality is either disabled or not supported)</string>
+
+    <!-- explanation texts and names-->
+    <string name="testEncryptionName">Device Encryption Enabled</string>
+    <string name="testEncryptionText">Device encryption helps to protect the device against the attac-ker by encrypting the files sto-red in device. These files are therefore useless, if the attacker can’t decrypt them.</string>
+
+    <string name="testRootName">Device not rooted</string>
+    <string name="testRootText">The access to the root privilege is very dangerous to many devices. Attacker or malicious application can exploit this weakness to gain access for the execution of kernel level commands and bypass many of the security features introduced in Android devices.</string>
+
+    <string name="testLockScreenName">LockScreen Used</string>
+    <string name="testLockScreenText">LockScreen of the Android devices helps to prevent unauthorized usage of the device. It also prevents access to the files and data stored in the device. With the LockScreen usage you can prevent the attacker from manipulating with the device. It is recommended to use either PIN, gesture or password lock.</string>
+
+    <string name="testBluetoothName">Bluetooth Disabled</string>
+    <string name="testBluetoothText">Bluetooth enables to communicate wirelessly with other devices with this technology. It is therefore considered a security risk for all the users, that are having this technology enabled even in the case that they dont use it.</string>
+
+    <string name="testHotspotName">Wi-Fi Hotspot Disabled</string>
+    <string name="testHotspotText">Wi-Fi hotspot is the security threat in case the attacker is able to connect to it. In this case, hotspot provides a network interface accessible to the attac-ker, which can be used to control the device.</string>
+
+    <string name="testDeviceManagerName">Device Manager Active</string>
+    <string name="testDeviceManagerText">dev ma</string>
+
+    <string name="testADBName">USB Debugging Disabled</string>
+    <string name="testADBText">USB Debugging enables the communications via ADB inter-face with the device. ADB enables to control the device wit-hout the need of user interface. It can execute many commands that can be potentially dangerous to the user. Because of this, it is better to disable USB Debugging in the case that you don’t need it.n</string>
+
+    <string name="testUnknownName">Unknown Sources Disabled</string>
+    <string name="testUnknownText">Installation of application from uknown sources is considered security threat to your device, because it enables to install apps that are not downloaded from the official distribution channels. These applications are potentially dangerous and can be used to attack the device.</string>
+
+    <string name="testWifiSecurName">Wi-Fi Secured</string>
+    <string name="testWifiSecurText">Unsecured Wi-Fi connection that is not encrypted represents a huge security threat, because the wireless communication can be easily spoofed or modified by the attacker via the Man-in-the-middle approach.</string>
+
+    <string name="testNFCName">NFC Disabled</string>
+    <string name="testNFCText">NFC technology enables the wireless communication between two devices. If the attacker can gain access to the NFC interface of the victim device, it can be used to gain control over it or to perform a various types of attacks.</string>
+
+    <string name="testGPSName">GPS Disabled</string>
+    <string name="testGPSText">GPS enables to gain the information about the position of the device. Such information are usually very important from the securityp oint of view and should be treated carefully. Because of this, it is usually better to disable GPS until you are going to actively use it.</string>
+
+</resources>
