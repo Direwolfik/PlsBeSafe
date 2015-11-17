@@ -15,6 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
+import cz.jn91.plsbesafe.activities.MainActivity;
 
 /**
  * Fragment containing explanation of test case
@@ -29,33 +30,23 @@ public class ExplanationFragment extends Fragment {
     @Bind(R.id.tvText)
     TextView text;
 
-    /**
-     * Creates new instance of ExplanationFragment using given test result as and attribute
-     *
-     * @param result TestResult of test for which information should be displayed
-     * @return new instance of ExplanationFragment
-     */
-    public static ExplanationFragment newInstance(TestResult result) {
-        ExplanationFragment explanationFragment = new ExplanationFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(RESULT, result);
-        explanationFragment.setArguments(args);
-        return explanationFragment;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_explanation, null);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this, view);
-        mResult = (TestResult) getArguments().getSerializable(RESULT);
         setHasOptionsMenu(true);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        MainActivity activity = (MainActivity)getActivity();
+        mResult = activity.getDisplayedResult();
+        if(mResult == null){
+            activity.onBackPressed();
+        }
         text.setText(mResult.getExplanation());
     }
 

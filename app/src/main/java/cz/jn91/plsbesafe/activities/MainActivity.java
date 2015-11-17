@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     String appTitle;
 
     TestsFragment testsFragment;
+    TestResult mDisplayedResult;
 
     boolean explanationShown = false;
 
@@ -41,11 +42,20 @@ public class MainActivity extends AppCompatActivity {
      * @param result result of test
      */
     public void displayExplanation(TestResult result) {
+        mDisplayedResult = result;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainer, ExplanationFragment.newInstance(result));
+        fragmentTransaction.replace(R.id.fragmentContainer, new ExplanationFragment());
         fragmentTransaction.commit();
         getSupportActionBar().setTitle(result.getName());
         explanationShown = true;
+    }
+
+    /**
+     * Callback for getting displayed result. This way it does not have to be passed to fragment.
+     * @return TestResult to be displayed and used
+     */
+    public TestResult getDisplayedResult(){
+        return mDisplayedResult;
     }
 
     @Override

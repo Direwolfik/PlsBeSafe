@@ -39,10 +39,11 @@ public class TestsFragment extends Fragment {
     @Bind(R.id.lvTests)
     ListView lvTests;
 
-    List<TestResult> testResults;
-    List<BaseTestAsyncTask> testAsyncTasks;
+    private List<TestResult> testResults;
+    private List<BaseTestAsyncTask> testAsyncTasks;
 
     private int currentTest = 0;
+    private boolean wasStopped = false;
 
     TestTasksAdapter testsAdapter;
 
@@ -55,12 +56,13 @@ public class TestsFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        testResults = new ArrayList<>();
-        testsAdapter = new TestTasksAdapter(getActivity(), R.layout.test_result_view, testResults);
-        setHasOptionsMenu(true);
+        if(!wasStopped) {
+            testResults = new ArrayList<>();
+            testsAdapter = new TestTasksAdapter(getActivity(), R.layout.test_result_view, testResults);
+            setHasOptionsMenu(true);
 
-        prepareTests();
-
+            prepareTests();
+        }
         lvTests.setAdapter(testsAdapter);
         testsAdapter.notifyDataSetChanged();
     }
@@ -95,6 +97,12 @@ public class TestsFragment extends Fragment {
         } else {
             currentTest = 0;
         }
+    }
+
+    @Override
+    public void onStop() {
+        wasStopped = true;
+        super.onStop();
     }
 
     /**

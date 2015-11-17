@@ -3,17 +3,12 @@ package cz.jn91.plsbesafe;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 
-import java.io.Serializable;
-
 /**
  * Class containing the test status of given test
  * <p/>
  * Created by jn91 on 12.11.2015.
  */
-public class TestResult implements Serializable {
-
-    private static final long serialVersionUID = 0L;
-
+public class TestResult  {
     String explanation;
     Status status;
     String name;
