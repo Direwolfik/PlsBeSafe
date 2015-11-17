@@ -1,15 +1,11 @@
 package cz.jn91.plsbesafe.testTasks;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.v4.app.Fragment;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;

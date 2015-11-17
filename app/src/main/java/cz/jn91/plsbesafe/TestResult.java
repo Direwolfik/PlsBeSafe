@@ -1,12 +1,9 @@
 package cz.jn91.plsbesafe;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
-
-import cz.jn91.plsbesafe.testTasks.BaseTestAsyncTask;
 
 /**
  * Class containing the test result of given test

@@ -1,11 +1,8 @@
 package cz.jn91.plsbesafe.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,11 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import butterknife.Bind;
-import butterknife.BindString;
 import butterknife.ButterKnife;
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.activities.MainActivity;
 
 /**
  * Fragment containing explanation of test case

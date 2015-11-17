@@ -1,10 +1,7 @@
 package cz.jn91.plsbesafe.testTasks;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.provider.Settings;

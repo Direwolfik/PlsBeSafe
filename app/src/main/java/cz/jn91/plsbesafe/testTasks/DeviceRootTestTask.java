@@ -1,10 +1,8 @@
 package cz.jn91.plsbesafe.testTasks;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.Snackbar;
-import android.widget.Toast;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;

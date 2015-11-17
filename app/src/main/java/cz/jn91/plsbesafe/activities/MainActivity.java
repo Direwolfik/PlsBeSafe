@@ -1,14 +1,10 @@
 package cz.jn91.plsbesafe.activities;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
-import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 import cz.jn91.plsbesafe.R;
