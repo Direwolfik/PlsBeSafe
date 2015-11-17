@@ -23,8 +23,6 @@ import cz.jn91.plsbesafe.activities.MainActivity;
  * Created by jn91 on 12.11.2015.
  */
 public class ExplanationFragment extends Fragment {
-    public static final String RESULT = "result";
-
     private TestResult mResult;
 
     @Bind(R.id.tvText)
