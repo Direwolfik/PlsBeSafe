@@ -29,18 +29,28 @@ import cz.jn91.plsbesafe.TestResult;
 import cz.jn91.plsbesafe.activities.MainActivity;
 
 /**
+ * Adapter that is used for the purpose of displaying test cases.
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
-public class TestTasksAdapter extends ArrayAdapter<TestResult>{
+public class TestTasksAdapter extends ArrayAdapter<TestResult> {
 
     Animation pulse;
 
+    /**
+     * Default ArrayAdapter constructor
+     *
+     * @param context     context to be used
+     * @param resource    layout of items
+     * @param testResults list of test results
+     */
     public TestTasksAdapter(Context context, int resource, List<TestResult> testResults) {
         super(context, resource, testResults);
         pulse = AnimationUtils.loadAnimation(context, R.anim.pulse);
     }
 
-    @Override public View getView(int position, View view, ViewGroup parent) {
+    @Override
+    public View getView(int position, View view, ViewGroup parent) {
         final TestResult result = getItem(position);
         final ViewHolder holder;
         if (view != null) {
@@ -51,7 +61,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult>{
             view.setTag(holder);
         }
         holder.tvText.setText(result.getName());
-        switch (result.getResult()){
+        switch (result.getResult()) {
             case FAIL:
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.red));
                 holder.pbLoading.setVisibility(View.GONE);
@@ -59,11 +69,11 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult>{
                 holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_highlight_off_white_48dp));
                 holder.ivInfo.setVisibility(View.VISIBLE);
                 holder.ivInfo.startAnimation(pulse);
-                holder.ivInfo.setOnClickListener(new View.OnClickListener(){
+                holder.ivInfo.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        ((MainActivity)getContext()).displayExplanation(result);
+                        ((MainActivity) getContext()).displayExplanation(result);
                     }
                 });
                 break;
@@ -111,24 +121,34 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult>{
 
     /**
      * Returns drawable card background colored by given color
+     *
      * @param color to be used
      * @return Drawable that can be used as background
      */
-    private Drawable getCardBackgroundWithColor(int color){
-        LayerDrawable bgDrawable = (LayerDrawable)getContext().getResources().getDrawable(R.drawable.card_background);
-        final GradientDrawable shape = (GradientDrawable)   bgDrawable.findDrawableByLayerId(R.id.item_background);
+    private Drawable getCardBackgroundWithColor(int color) {
+        LayerDrawable bgDrawable = (LayerDrawable) getContext().getResources().getDrawable(R.drawable.card_background);
+        final GradientDrawable shape = (GradientDrawable) bgDrawable.findDrawableByLayerId(R.id.item_background);
         shape.setColor(getContext().getResources().getColor(color));
         return bgDrawable;
     }
-    static class ViewHolder{
-        @Bind(R.id.pbLoading) ProgressBar pbLoading;
-        @Bind(R.id.ivResult) ImageView ivResult;
-        @Bind(R.id.ivInfo) ImageView ivInfo;
-        @Bind(R.id.tvText) TextView tvText;
-        @Bind(R.id.llBackground) LinearLayout llBackground;
 
-        public ViewHolder(View view){
-            ButterKnife.bind(this,view);
+    /**
+     * View Holder pattern for items
+     */
+    static class ViewHolder {
+        @Bind(R.id.pbLoading)
+        ProgressBar pbLoading;
+        @Bind(R.id.ivResult)
+        ImageView ivResult;
+        @Bind(R.id.ivInfo)
+        ImageView ivInfo;
+        @Bind(R.id.tvText)
+        TextView tvText;
+        @Bind(R.id.llBackground)
+        LinearLayout llBackground;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
         }
     }
 }

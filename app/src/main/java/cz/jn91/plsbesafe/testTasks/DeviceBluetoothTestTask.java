@@ -15,9 +15,19 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Tests if Bluetooth is enabled
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
-public class DeviceBluetoothTestTask extends BaseTestAsyncTask{
+public class DeviceBluetoothTestTask extends BaseTestAsyncTask {
+
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter  adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
     public DeviceBluetoothTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         super(fragment, adapter, position);
     }

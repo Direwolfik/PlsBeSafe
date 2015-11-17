@@ -17,10 +17,19 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Tests if encryption is used in given device
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
 public class DeviceEncryptionTestTask extends BaseTestAsyncTask {
 
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter  adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
     public DeviceEncryptionTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         super(fragment, adapter, position);
     }

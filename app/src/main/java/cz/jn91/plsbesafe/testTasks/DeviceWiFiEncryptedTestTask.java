@@ -17,9 +17,19 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Check if device is connected to encrypted network
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
 public class DeviceWiFiEncryptedTestTask extends BaseTestAsyncTask {
+
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter  adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
     public DeviceWiFiEncryptedTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         super(fragment, adapter, position);
     }
@@ -56,15 +66,14 @@ public class DeviceWiFiEncryptedTestTask extends BaseTestAsyncTask {
 
         WifiInfo wi = wifi.getConnectionInfo();
         String currentSSID = wi.getSSID();
-        currentSSID = currentSSID.replaceAll("\"","");
+        currentSSID = currentSSID.replaceAll("\"", "");
 
         if (networkList != null) {
-            for (ScanResult network : networkList)
-            {
-                String ssid = network.SSID.replaceAll("\"","");
-                if (currentSSID.equals(ssid)){
-                    String Capabilities =  network.capabilities;
-                    if(Capabilities.contains("WPA2") || Capabilities.contains("WPA") || Capabilities.contains("WEP")){
+            for (ScanResult network : networkList) {
+                String ssid = network.SSID.replaceAll("\"", "");
+                if (currentSSID.equals(ssid)) {
+                    String Capabilities = network.capabilities;
+                    if (Capabilities.contains("WPA2") || Capabilities.contains("WPA") || Capabilities.contains("WEP")) {
                         return TestResult.Result.OK;
                     } else {
                         return TestResult.Result.FAIL;

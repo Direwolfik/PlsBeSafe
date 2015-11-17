@@ -15,20 +15,29 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Abstract class which should be extended by all test cases
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
-public abstract class BaseTestAsyncTask extends AsyncTask<Void, Void,TestResult.Result> {
+public abstract class BaseTestAsyncTask extends AsyncTask<Void, Void, TestResult.Result> {
     TestsFragment fragment;
     Context context;
     TestTasksAdapter adapter;
     int position;
 
-    public BaseTestAsyncTask(TestsFragment fragment,TestTasksAdapter adapter, int position){
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter  adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
+    public BaseTestAsyncTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         this.fragment = fragment;
         context = fragment.getActivity();
         this.adapter = adapter;
         this.position = position;
-        TestResult result = new TestResult(getExplanation(), TestResult.Result.READY, getName(),getResolver());
+        TestResult result = new TestResult(getExplanation(), TestResult.Result.READY, getName(), getResolver());
         adapter.add(result);
         adapter.notifyDataSetChanged();
     }
@@ -41,18 +50,21 @@ public abstract class BaseTestAsyncTask extends AsyncTask<Void, Void,TestResult.
 
     /**
      * Returns the explanation text for this test case. This text should be used on explanation screen.
+     *
      * @return String with explanation text
      */
     protected abstract String getExplanation();
 
     /**
      * Returns the name for this test case. This name should be used on test screen.
+     *
      * @return String with explanation text
      */
     protected abstract String getName();
 
     /**
      * Returns the TestResolver for this test
+     *
      * @return TestResolver that will resolve the FAIL result of this test
      */
     protected abstract TestResult.TestResolver getResolver();
@@ -66,11 +78,12 @@ public abstract class BaseTestAsyncTask extends AsyncTask<Void, Void,TestResult.
 
     /**
      * Opens the settings screen with based on given action
-     * @param action String representation of action
+     *
+     * @param action   String representation of action
      * @param activity Activity that should open dialog
-     * @param icon to be used - most probably from getMenuIcon(activity)
+     * @param icon     to be used - most probably from getMenuIcon(activity)
      */
-    protected void openSettingsDialog(final String action,final Activity activity, Drawable icon){
+    protected void openSettingsDialog(final String action, final Activity activity, Drawable icon) {
         new AlertDialog.Builder(activity)
                 .setTitle(activity.getString(R.string.goToSettingsTitle))
                 .setMessage(activity.getString(R.string.goToSettingsText))

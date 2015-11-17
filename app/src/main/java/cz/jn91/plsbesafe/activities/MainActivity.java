@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -18,7 +19,7 @@ import cz.jn91.plsbesafe.fragments.TestsFragment;
 /**
  * Main activity of the application
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
     @BindString(R.string.app_title)
     String appTitle;
 
@@ -40,9 +41,10 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * display the explanation of given test result in separate fragment
+     *
      * @param result result of test
      */
-    public void displayExplanation(TestResult result){
+    public void displayExplanation(TestResult result) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer, ExplanationFragment.newInstance(result));
         fragmentTransaction.commit();
@@ -52,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        if(explanationShown){
+        if (explanationShown) {
             displayTestsFragment();
         } else {
             super.onBackPressed();
@@ -62,11 +64,11 @@ public class MainActivity extends ActionBarActivity {
     /**
      * Display test fragment
      */
-    private void displayTestsFragment(){
+    private void displayTestsFragment() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle(appTitle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        if(testsFragment != null) {
+        if (testsFragment != null) {
             fragmentTransaction.replace(R.id.fragmentContainer, testsFragment);
         } else {
             testsFragment = new TestsFragment();

@@ -10,10 +10,20 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Tests if Unknown Sources are enabled
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
-public class DeviceUnknowSourcesTestTask extends BaseTestAsyncTask {
-    public DeviceUnknowSourcesTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
+public class DeviceUnknownSourcesTestTask extends BaseTestAsyncTask {
+
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter  adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
+    public DeviceUnknownSourcesTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         super(fragment, adapter, position);
     }
 
@@ -44,14 +54,14 @@ public class DeviceUnknowSourcesTestTask extends BaseTestAsyncTask {
 
     @Override
     protected TestResult.Result doInBackground(Void... params) {
-        try{
+        try {
             boolean isNonPlayAppAllowed = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.INSTALL_NON_MARKET_APPS) == 1;
-            if(isNonPlayAppAllowed){
+            if (isNonPlayAppAllowed) {
                 return TestResult.Result.FAIL;
             } else {
                 return TestResult.Result.OK;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             return TestResult.Result.NOT_TESTED;
         }
     }

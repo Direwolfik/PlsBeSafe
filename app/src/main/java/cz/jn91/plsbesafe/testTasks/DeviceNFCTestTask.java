@@ -14,9 +14,19 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Tests if NFC is enabled on the device
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
 public class DeviceNFCTestTask extends BaseTestAsyncTask {
+
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter  adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
     public DeviceNFCTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         super(fragment, adapter, position);
     }
@@ -36,7 +46,7 @@ public class DeviceNFCTestTask extends BaseTestAsyncTask {
         return new TestResult.TestResolver() {
             @Override
             public void resolveProblem(final Activity activity) {
-                openSettingsDialog(Settings.ACTION_NFC_SETTINGS,activity,getMenuIcon(activity));
+                openSettingsDialog(Settings.ACTION_NFC_SETTINGS, activity, getMenuIcon(activity));
             }
 
             @Override

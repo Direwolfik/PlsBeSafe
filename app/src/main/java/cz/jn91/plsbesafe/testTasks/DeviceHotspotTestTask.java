@@ -17,9 +17,19 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Tests if wi-fi hotspot is active
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
-public class DeviceHotspotTestTask extends BaseTestAsyncTask{
+public class DeviceHotspotTestTask extends BaseTestAsyncTask {
+
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter  adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
     public DeviceHotspotTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         super(fragment, adapter, position);
     }
@@ -55,13 +65,13 @@ public class DeviceHotspotTestTask extends BaseTestAsyncTask{
         try {
             final Method method = wifi.getClass().getDeclaredMethod("isWifiApEnabled");
             method.setAccessible(true); //in the case of visibility change in future APIs
-            boolean result =  (Boolean) method.invoke(wifi);
-            if(result){
+            boolean result = (Boolean) method.invoke(wifi);
+            if (result) {
                 return TestResult.Result.FAIL;
             } else {
                 return TestResult.Result.OK;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             return TestResult.Result.NOT_TESTED;
         }
 

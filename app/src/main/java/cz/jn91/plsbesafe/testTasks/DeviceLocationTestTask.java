@@ -15,9 +15,19 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Tests if GPS is used by the device
+ *
  * Created by jn91 on 12.11.2015.
  */
 public class DeviceLocationTestTask extends BaseTestAsyncTask {
+
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
     public DeviceLocationTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         super(fragment, adapter, position);
     }

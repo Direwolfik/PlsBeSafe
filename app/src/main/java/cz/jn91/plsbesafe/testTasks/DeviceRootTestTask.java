@@ -13,10 +13,19 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Tests if device is rooted
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
-public class DeviceRootTestTask extends BaseTestAsyncTask{
+public class DeviceRootTestTask extends BaseTestAsyncTask {
 
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter  adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
     public DeviceRootTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         super(fragment, adapter, position);
     }
@@ -48,7 +57,7 @@ public class DeviceRootTestTask extends BaseTestAsyncTask{
 
     @Override
     protected TestResult.Result doInBackground(Void... params) {
-        if(RootUtil.isDeviceRooted()){
+        if (RootUtil.isDeviceRooted()) {
             return TestResult.Result.FAIL;
         } else {
             return TestResult.Result.OK;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,17 +22,24 @@ import cz.jn91.plsbesafe.TestResult;
 import cz.jn91.plsbesafe.activities.MainActivity;
 
 /**
+ * Fragment containing explanation of test case
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
 public class ExplanationFragment extends Fragment {
     public static final String RESULT = "result";
 
     private TestResult mResult;
-    private Menu mMenu;
 
     @Bind(R.id.tvText)
     TextView text;
 
+    /**
+     * Creates new instance of ExplanationFragment using given test result as and attribute
+     *
+     * @param result TestResult of test for which information should be displayed
+     * @return new instance of ExplanationFragment
+     */
     public static ExplanationFragment newInstance(TestResult result) {
         ExplanationFragment explanationFragment = new ExplanationFragment();
         Bundle args = new Bundle();
@@ -43,10 +51,10 @@ public class ExplanationFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_explanation,null);
-        ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        View view = inflater.inflate(R.layout.fragment_explanation, null);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this, view);
-        mResult = (TestResult)getArguments().getSerializable(RESULT);
+        mResult = (TestResult) getArguments().getSerializable(RESULT);
         setHasOptionsMenu(true);
         return view;
     }
@@ -58,7 +66,7 @@ public class ExplanationFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.explanation_menu,menu);
+        inflater.inflate(R.menu.explanation_menu, menu);
         if (menu != null) {
             MenuItem item = menu.findItem(R.id.menuResolveProblem);
             if (item != null) {
@@ -69,7 +77,7 @@ public class ExplanationFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menuResolveProblem:
                 mResult.getResolver().resolveProblem(getActivity());
                 return true;

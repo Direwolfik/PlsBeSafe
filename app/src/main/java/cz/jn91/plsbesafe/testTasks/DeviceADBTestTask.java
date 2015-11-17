@@ -14,9 +14,19 @@ import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
+ * Tests if the ADB debug mode is active
+ * <p/>
  * Created by jn91 on 12.11.2015.
  */
-public class DeviceADBTestTask extends BaseTestAsyncTask{
+public class DeviceADBTestTask extends BaseTestAsyncTask {
+
+    /**
+     * Creates new instance of test case
+     *
+     * @param fragment fragment in which this task is shown
+     * @param adapter  adapter with test cases
+     * @param position position of test in array, it is used in callback
+     */
     public DeviceADBTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
         super(fragment, adapter, position);
     }
@@ -36,7 +46,7 @@ public class DeviceADBTestTask extends BaseTestAsyncTask{
         return new TestResult.TestResolver() {
             @Override
             public void resolveProblem(final Activity activity) {
-                openSettingsDialog(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS,activity,getMenuIcon(activity));
+                openSettingsDialog(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS, activity, getMenuIcon(activity));
             }
 
             @Override
@@ -48,7 +58,7 @@ public class DeviceADBTestTask extends BaseTestAsyncTask{
 
     @Override
     protected TestResult.Result doInBackground(Void... params) {
-        if(Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ADB_ENABLED, 0) == 1) {
+        if (Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ADB_ENABLED, 0) == 1) {
             return TestResult.Result.FAIL;
         } else {
             return TestResult.Result.OK;
