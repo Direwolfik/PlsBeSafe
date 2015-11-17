@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
      */
     public void displayExplanation(TestResult result){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainer, ExplanationFragment.newInstance(result.getExplanation()));
+        fragmentTransaction.replace(R.id.fragmentContainer, ExplanationFragment.newInstance(result));
         fragmentTransaction.commit();
         getSupportActionBar().setTitle(result.getName());
         explanationShown = true;
@@ -83,8 +83,7 @@ public class MainActivity extends ActionBarActivity {
                 onBackPressed();
                 return true;
             default:
-                onBackPressed();
-                return true;
+                return super.onOptionsItemSelected(item);
         }
     }
 }

@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,8 +41,6 @@ import cz.jn91.plsbesafe.testTasks.DeviceWiFiEncryptedTestTask;
 public class TestsFragment extends Fragment {
     @Bind(R.id.lvTests)
     ListView lvTests;
-    @Bind(R.id.btRunTest)
-    Button btRunTest;
 
     List<TestResult> testResults;
     List<BaseTestAsyncTask> testAsyncTasks;
@@ -60,13 +61,15 @@ public class TestsFragment extends Fragment {
         testResults = new ArrayList<>();
         testsAdapter = new TestTasksAdapter(getActivity(),R.layout.test_result_view,testResults);
 
+        setHasOptionsMenu(true);
+
         prepareTests();
 
         lvTests.setAdapter(testsAdapter);
 
         testsAdapter.notifyDataSetChanged();
 
-        runNextTest();
+   //     runNextTest();
     }
 
 
@@ -82,10 +85,10 @@ public class TestsFragment extends Fragment {
    //     testAsyncTasks.add(new DeviceManagerTestTask(this,testsAdapter,testAsyncTasks.size()));
         testAsyncTasks.add(new DeviceADBTestTask(this,testsAdapter,testAsyncTasks.size()));
         testAsyncTasks.add(new DeviceUnknowSourcesTestTask(this,testsAdapter,testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceWiFiEncryptedTestTask(this,testsAdapter,testAsyncTasks.size()));
+        testAsyncTasks.add(new DeviceWiFiEncryptedTestTask(this, testsAdapter, testAsyncTasks.size()));
         testAsyncTasks.add(new DeviceHotspotTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceNFCTestTask(this,testsAdapter,testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceLocationTestTask(this,testsAdapter,testAsyncTasks.size()));
+        testAsyncTasks.add(new DeviceNFCTestTask(this, testsAdapter, testAsyncTasks.size()));
+        testAsyncTasks.add(new DeviceLocationTestTask(this, testsAdapter, testAsyncTasks.size()));
     }
 
 
@@ -93,22 +96,31 @@ public class TestsFragment extends Fragment {
      * Callback method for the completed async tascs. This method will run another test or set the current test counter to 0 if there are no more tests.
      */
     public void runNextTest(){
-        btRunTest.setEnabled(false);
         if(currentTest < testAsyncTasks.size()) {
             testAsyncTasks.get(currentTest).execute();
             currentTest++;
         }
         else {
-            btRunTest.setEnabled(true);
             currentTest = 0;
         };
     }
 
-    @OnClick(R.id.btRunTest)
-    public void testAgain(){
-        testsAdapter.clear();
-        prepareTests();
-        testsAdapter.notifyDataSetChanged();
-        runNextTest();
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.tests_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.menuRunRests:
+                testsAdapter.clear();
+                prepareTests();
+                testsAdapter.notifyDataSetChanged();
+                runNextTest();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,5 +1,7 @@
 package cz.jn91.plsbesafe.testTasks;
 
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
@@ -23,6 +25,21 @@ public class DeviceUnknowSourcesTestTask extends BaseTestAsyncTask {
     @Override
     protected String getName() {
         return context.getString(R.string.testUnknownName);
+    }
+
+    @Override
+    protected TestResult.TestResolver getResolver() {
+        return new TestResult.TestResolver() {
+            @Override
+            public void resolveProblem(final Activity activity) {
+                openSettingsDialog(Settings.ACTION_SECURITY_SETTINGS, activity, getMenuIcon(activity));
+            }
+
+            @Override
+            public Drawable getMenuIcon(Activity activity) {
+                return activity.getResources().getDrawable(R.drawable.ic_get_app_white_48dp);
+            }
+        };
     }
 
     @Override

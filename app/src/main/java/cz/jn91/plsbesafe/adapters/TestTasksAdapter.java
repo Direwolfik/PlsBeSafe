@@ -2,6 +2,11 @@ package cz.jn91.plsbesafe.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +42,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult>{
 
     @Override public View getView(int position, View view, ViewGroup parent) {
         final TestResult result = getItem(position);
-        ViewHolder holder;
+        final ViewHolder holder;
         if (view != null) {
             holder = (ViewHolder) view.getTag();
         } else {
@@ -48,7 +53,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult>{
         holder.tvText.setText(result.getName());
         switch (result.getResult()){
             case FAIL:
-                holder.llBackground.setBackgroundColor(getContext().getResources().getColor(android.R.color.holo_red_dark));
+                holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.red));
                 holder.pbLoading.setVisibility(View.GONE);
                 holder.ivResult.setVisibility(View.VISIBLE);
                 holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_highlight_off_white_48dp));
@@ -64,14 +69,14 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult>{
                 break;
 
             case NOT_TESTED:
-                holder.llBackground.setBackgroundColor(getContext().getResources().getColor(android.R.color.holo_orange_dark));
+                holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.orange));
                 holder.pbLoading.setVisibility(View.GONE);
                 holder.ivResult.setVisibility(View.VISIBLE);
-                holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_report_problem_white_48dp));
+                holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_report_white_48dp));
                 holder.ivResult.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getContext(), getContext().getString(R.string.notSupported), Toast.LENGTH_SHORT).show();
+                        Snackbar.make(holder.llBackground, getContext().getString(R.string.notSupported), Snackbar.LENGTH_LONG).show();
                     }
                 });
                 holder.ivResult.startAnimation(pulse);
@@ -79,7 +84,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult>{
                 break;
 
             case OK:
-                holder.llBackground.setBackgroundColor(getContext().getResources().getColor(android.R.color.holo_green_dark));
+                holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.green));
                 holder.pbLoading.setVisibility(View.GONE);
                 holder.ivResult.setVisibility(View.VISIBLE);
                 holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_done_white_48dp));
@@ -87,15 +92,15 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult>{
                 break;
 
             case READY:
-                holder.llBackground.setBackgroundColor(getContext().getResources().getColor(android.R.color.darker_gray));
+                holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.grey));
                 holder.pbLoading.setVisibility(View.GONE);
                 holder.ivResult.setVisibility(View.VISIBLE);
-                holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_assignment_white_48dp));
+                holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_cached_white_48dp));
                 holder.ivInfo.setVisibility(View.INVISIBLE);
                 break;
 
             case IN_PROGRESS:
-                holder.llBackground.setBackgroundColor(getContext().getResources().getColor(android.R.color.darker_gray));
+                holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.grey));
                 holder.pbLoading.setVisibility(View.VISIBLE);
                 holder.ivResult.setVisibility(View.GONE);
                 holder.ivInfo.setVisibility(View.INVISIBLE);
@@ -104,6 +109,17 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult>{
         return view;
     }
 
+    /**
+     * Returns drawable card background colored by given color
+     * @param color to be used
+     * @return Drawable that can be used as background
+     */
+    private Drawable getCardBackgroundWithColor(int color){
+        LayerDrawable bgDrawable = (LayerDrawable)getContext().getResources().getDrawable(R.drawable.card_background);
+        final GradientDrawable shape = (GradientDrawable)   bgDrawable.findDrawableByLayerId(R.id.item_background);
+        shape.setColor(getContext().getResources().getColor(color));
+        return bgDrawable;
+    }
     static class ViewHolder{
         @Bind(R.id.pbLoading) ProgressBar pbLoading;
         @Bind(R.id.ivResult) ImageView ivResult;

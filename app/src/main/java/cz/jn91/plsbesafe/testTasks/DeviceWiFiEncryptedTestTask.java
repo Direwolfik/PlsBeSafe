@@ -1,10 +1,13 @@
 package cz.jn91.plsbesafe.testTasks;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.provider.Settings;
 
 import java.util.List;
 
@@ -32,6 +35,21 @@ public class DeviceWiFiEncryptedTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected TestResult.TestResolver getResolver() {
+        return new TestResult.TestResolver() {
+            @Override
+            public void resolveProblem(final Activity activity) {
+                openSettingsDialog(Settings.ACTION_WIFI_SETTINGS, activity, getMenuIcon(activity));
+            }
+
+            @Override
+            public Drawable getMenuIcon(Activity activity) {
+                return activity.getResources().getDrawable(R.drawable.ic_wifi_lock_white_48dp);
+            }
+        };
+    }
+
+    @Override
     protected TestResult.Result doInBackground(Void... params) {
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         List<ScanResult> networkList = wifi.getScanResults();
@@ -44,7 +62,7 @@ public class DeviceWiFiEncryptedTestTask extends BaseTestAsyncTask {
             for (ScanResult network : networkList)
             {
                 String ssid = network.SSID.replaceAll("\"","");
-                if (currentSSID.equals(network.SSID)){
+                if (currentSSID.equals(ssid)){
                     String Capabilities =  network.capabilities;
                     if(Capabilities.contains("WPA2") || Capabilities.contains("WPA") || Capabilities.contains("WEP")){
                         return TestResult.Result.OK;

@@ -3,25 +3,11 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp">
-        <Button
-            android:id="@+id/btRunTest"
-            android:layout_width="180dp"
-            android:layout_height="match_parent"
-            android:text="Run Test"
-            android:enabled="false"
-            android:background="@android:color/black"
-            android:textColor="@android:color/white"/>
-    </RelativeLayout>
     <ListView
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:id="@+id/lvTests"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
-        android:dividerHeight="0dp"/>
+        android:dividerHeight="10dp"/>
 </LinearLayout>

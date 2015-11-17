@@ -1,6 +1,13 @@
 package cz.jn91.plsbesafe.testTasks;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
@@ -23,6 +30,21 @@ public class DeviceBluetoothTestTask extends BaseTestAsyncTask{
     @Override
     protected String getName() {
         return context.getString(R.string.testBluetoothName);
+    }
+
+    @Override
+    protected TestResult.TestResolver getResolver() {
+        return new TestResult.TestResolver() {
+            @Override
+            public void resolveProblem(final Activity activity) {
+                openSettingsDialog(Settings.ACTION_BLUETOOTH_SETTINGS, activity, getMenuIcon(activity));
+            }
+
+            @Override
+            public Drawable getMenuIcon(Activity activity) {
+                return activity.getResources().getDrawable(R.drawable.ic_bluetooth_disabled_white_48dp);
+            }
+        };
     }
 
     @Override

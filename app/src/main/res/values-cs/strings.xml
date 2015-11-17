@@ -2,8 +2,16 @@
 <resources>
     <string name="app_name">PlsBeSafe</string>
     <string name="app_title">PlsBeSafe</string>
+
     <string name="notSupported">Toto nebylo možné otestovat! Požadovaná funkcionalita pravděpodobně není na tomto zařízení podporována.</string>
 
+    <string name="resolveProblemMenu">Vyřešit problém</string>
+    <string name="runTestsMenu">Spustit testy</string>
+
+    <string name="goToSettingsTitle">Přejít do nastavení</string>
+    <string name="goToSettingsText">Tato akce otevře obrazovku nastavení, kde je možné tuto funkcionalitu povolit nebo zakázat</string>
+
+    <string name="deviceRooted">Toto zařízení má povolené oprávnění root. Je doporučeno toto oprávnění zakázat, např. pomocí programu SuperSU.</string>
     <!-- explanation texts and names-->
     <string name="testEncryptionName">Šifrování zařízení aktivní</string>
     <string name="testEncryptionText">Šifrování zařízení napomáhá ochránit zařízení před případným útokem tím, že zašifruje všechny soubory v zařízení. Tyto soubory jsou pak pro útočníka nečitelné, pokud je nedokáže dešifrovat.</string>

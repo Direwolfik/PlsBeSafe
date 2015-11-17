@@ -24,6 +24,11 @@ public class DeviceManagerTestTask extends BaseTestAsyncTask{
     }
 
     @Override
+    protected TestResult.TestResolver getResolver() {
+        return null;
+    }
+
+    @Override
     protected TestResult.Result doInBackground(Void... params) {
         return null;
     }

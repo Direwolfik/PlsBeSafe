@@ -1,9 +1,12 @@
 package cz.jn91.plsbesafe.testTasks;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcManager;
 import android.os.Build;
+import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
@@ -26,6 +29,21 @@ public class DeviceNFCTestTask extends BaseTestAsyncTask {
     @Override
     protected String getName() {
         return context.getString(R.string.testNFCName);
+    }
+
+    @Override
+    protected TestResult.TestResolver getResolver() {
+        return new TestResult.TestResolver() {
+            @Override
+            public void resolveProblem(final Activity activity) {
+                openSettingsDialog(Settings.ACTION_NFC_SETTINGS,activity,getMenuIcon(activity));
+            }
+
+            @Override
+            public Drawable getMenuIcon(Activity activity) {
+                return activity.getResources().getDrawable(R.drawable.ic_nfc_white_48dp);
+            }
+        };
     }
 
     @Override

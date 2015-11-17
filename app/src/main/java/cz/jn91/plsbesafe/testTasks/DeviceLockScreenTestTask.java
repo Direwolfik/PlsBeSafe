@@ -1,14 +1,15 @@
 package cz.jn91.plsbesafe.testTasks;
 
-import android.app.admin.DevicePolicyManager;
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.provider.Settings;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.Util.LockType;
 import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
@@ -31,14 +32,22 @@ public class DeviceLockScreenTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.TestResolver getResolver() {
+        return new TestResult.TestResolver() {
+            @Override
+            public void resolveProblem(final Activity activity) {
+                openSettingsDialog(Settings.ACTION_SECURITY_SETTINGS,activity,getMenuIcon(activity));
+            }
 
-//        int mode = LockType.getCurrent(context.getContentResolver());
-//        if(mode == 1){
-//            return TestResult.Result.FAIL;
-//        } else {
-//            return TestResult.Result.OK;
-//        }
+            @Override
+            public Drawable getMenuIcon(Activity activity) {
+                return activity.getResources().getDrawable(R.drawable.ic_lock_white_48dp);
+            }
+        };
+    }
+
+    @Override
+    protected TestResult.Result doInBackground(Void... params) {
 
         Class<?> clazz = null;
         try {
