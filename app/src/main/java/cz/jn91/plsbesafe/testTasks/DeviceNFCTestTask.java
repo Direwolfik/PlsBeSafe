@@ -10,7 +10,6 @@ import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -24,11 +23,9 @@ public class DeviceNFCTestTask extends BaseTestAsyncTask {
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter  adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public DeviceNFCTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
-        super(fragment, adapter, position);
+    public DeviceNFCTestTask(TestsFragment fragment) {
+        super(fragment);
     }
 
     @Override
@@ -57,23 +54,23 @@ public class DeviceNFCTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.Status doInBackground(Void... params) {
         try {
             if (Build.VERSION.SDK_INT >= 11) {
                 NfcManager manager = (NfcManager) context.getSystemService(Context.NFC_SERVICE);
                 NfcAdapter nfcAdapter = manager.getDefaultAdapter();
 
                 if (nfcAdapter != null && nfcAdapter.isEnabled()) {
-                    return TestResult.Result.FAIL;
+                    return TestResult.Status.FAIL;
                 } else {
-                    return TestResult.Result.OK;
+                    return TestResult.Status.OK;
                 }
             } else {
-                return TestResult.Result.NOT_TESTED;
+                return TestResult.Status.NOT_TESTED;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return TestResult.Result.NOT_TESTED;
+            return TestResult.Status.NOT_TESTED;
         }
     }
 }

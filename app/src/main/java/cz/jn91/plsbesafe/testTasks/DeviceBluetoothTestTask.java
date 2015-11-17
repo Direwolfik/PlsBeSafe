@@ -7,7 +7,6 @@ import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -21,11 +20,9 @@ public class DeviceBluetoothTestTask extends BaseTestAsyncTask {
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter  adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public DeviceBluetoothTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
-        super(fragment, adapter, position);
+    public DeviceBluetoothTestTask(TestsFragment fragment) {
+        super(fragment);
     }
 
     @Override
@@ -54,15 +51,15 @@ public class DeviceBluetoothTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.Status doInBackground(Void... params) {
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
-            return TestResult.Result.NOT_TESTED;
+            return TestResult.Status.NOT_TESTED;
         } else {
             if (mBluetoothAdapter.isEnabled()) {
-                return TestResult.Result.FAIL;
+                return TestResult.Status.FAIL;
             }
-            return TestResult.Result.OK;
+            return TestResult.Status.OK;
         }
     }
 }

@@ -10,7 +10,6 @@ import android.os.AsyncTask;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -18,33 +17,20 @@ import cz.jn91.plsbesafe.fragments.TestsFragment;
  * <p/>
  * Created by jn91 on 12.11.2015.
  */
-public abstract class BaseTestAsyncTask extends AsyncTask<Void, Void, TestResult.Result> {
-    TestsFragment fragment;
-    Context context;
-    TestTasksAdapter adapter;
-    int position;
+public abstract class BaseTestAsyncTask extends AsyncTask<Void, Void, TestResult.Status> {
+    protected TestsFragment fragment;
+    protected Context context;
 
     /**
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter  adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public BaseTestAsyncTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
+    public BaseTestAsyncTask(TestsFragment fragment) {
         this.fragment = fragment;
         context = fragment.getActivity();
-        this.adapter = adapter;
-        this.position = position;
-        TestResult result = new TestResult(getExplanation(), TestResult.Result.READY, getName(), getResolver());
-        adapter.add(result);
-        adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    protected void onPreExecute() {
-        adapter.getItem(position).setResult(TestResult.Result.IN_PROGRESS);
-        adapter.notifyDataSetChanged();
+        TestResult result = new TestResult(getExplanation(), TestResult.Status.READY, getName(), getResolver());
+        fragment.addNewResult(result);
     }
 
     /**
@@ -69,10 +55,8 @@ public abstract class BaseTestAsyncTask extends AsyncTask<Void, Void, TestResult
     protected abstract TestResult.TestResolver getResolver();
 
     @Override
-    protected void onPostExecute(TestResult.Result result) {
-        adapter.getItem(position).setResult(result);
-        adapter.notifyDataSetChanged();
-        fragment.runNextTest();
+    protected void onPostExecute(TestResult.Status status) {
+        fragment.passResult(status);
     }
 
     /**

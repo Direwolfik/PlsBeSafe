@@ -57,7 +57,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
             view.setTag(holder);
         }
         holder.tvText.setText(result.getName());
-        switch (result.getResult()) {
+        switch (result.getStatus()) {
             case FAIL:
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.red));
                 holder.pbLoading.setVisibility(View.GONE);

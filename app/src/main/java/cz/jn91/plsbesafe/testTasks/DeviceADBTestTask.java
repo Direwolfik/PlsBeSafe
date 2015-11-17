@@ -6,7 +6,6 @@ import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -20,11 +19,9 @@ public class DeviceADBTestTask extends BaseTestAsyncTask {
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter  adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public DeviceADBTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
-        super(fragment, adapter, position);
+    public DeviceADBTestTask(TestsFragment fragment) {
+        super(fragment);
     }
 
     @Override
@@ -53,11 +50,11 @@ public class DeviceADBTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.Status doInBackground(Void... params) {
         if (Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ADB_ENABLED, 0) == 1) {
-            return TestResult.Result.FAIL;
+            return TestResult.Status.FAIL;
         } else {
-            return TestResult.Result.OK;
+            return TestResult.Status.OK;
         }
     }
 }

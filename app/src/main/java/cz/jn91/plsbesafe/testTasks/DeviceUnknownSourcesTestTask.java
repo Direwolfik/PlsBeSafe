@@ -6,7 +6,6 @@ import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -20,11 +19,9 @@ public class DeviceUnknownSourcesTestTask extends BaseTestAsyncTask {
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter  adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public DeviceUnknownSourcesTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
-        super(fragment, adapter, position);
+    public DeviceUnknownSourcesTestTask(TestsFragment fragment) {
+        super(fragment);
     }
 
     @Override
@@ -53,16 +50,16 @@ public class DeviceUnknownSourcesTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.Status doInBackground(Void... params) {
         try {
             boolean isNonPlayAppAllowed = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.INSTALL_NON_MARKET_APPS) == 1;
             if (isNonPlayAppAllowed) {
-                return TestResult.Result.FAIL;
+                return TestResult.Status.FAIL;
             } else {
-                return TestResult.Result.OK;
+                return TestResult.Status.OK;
             }
         } catch (Exception e) {
-            return TestResult.Result.NOT_TESTED;
+            return TestResult.Status.NOT_TESTED;
         }
     }
 }

@@ -8,7 +8,6 @@ import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -22,11 +21,9 @@ public class DeviceLocationTestTask extends BaseTestAsyncTask {
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public DeviceLocationTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
-        super(fragment, adapter, position);
+    public DeviceLocationTestTask(TestsFragment fragment) {
+        super(fragment);
     }
 
     @Override
@@ -55,12 +52,12 @@ public class DeviceLocationTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.Status doInBackground(Void... params) {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            return TestResult.Result.FAIL;
+            return TestResult.Status.FAIL;
         } else {
-            return TestResult.Result.OK;
+            return TestResult.Status.OK;
         }
     }
 }

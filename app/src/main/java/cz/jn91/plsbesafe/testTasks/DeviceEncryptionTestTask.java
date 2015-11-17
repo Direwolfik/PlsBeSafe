@@ -9,7 +9,6 @@ import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -23,11 +22,9 @@ public class DeviceEncryptionTestTask extends BaseTestAsyncTask {
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter  adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public DeviceEncryptionTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
-        super(fragment, adapter, position);
+    public DeviceEncryptionTestTask(TestsFragment fragment) {
+        super(fragment);
     }
 
     @Override
@@ -56,18 +53,18 @@ public class DeviceEncryptionTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.Status doInBackground(Void... params) {
         if (Build.VERSION.SDK_INT >= 11) {
             final DevicePolicyManager dpm = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
             if (dpm != null) {
                 int encryptionStatus = dpm.getStorageEncryptionStatus();
                 if (encryptionStatus == dpm.ENCRYPTION_STATUS_ACTIVE) {
-                    return TestResult.Result.OK;
+                    return TestResult.Status.OK;
                 }
             }
-            return TestResult.Result.FAIL;
+            return TestResult.Status.FAIL;
         }
-        return TestResult.Result.NOT_TESTED;
+        return TestResult.Status.NOT_TESTED;
     }
 
 }

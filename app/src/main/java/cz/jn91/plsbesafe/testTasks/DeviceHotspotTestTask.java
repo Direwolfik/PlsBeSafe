@@ -10,7 +10,6 @@ import java.lang.reflect.Method;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -24,11 +23,9 @@ public class DeviceHotspotTestTask extends BaseTestAsyncTask {
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter  adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public DeviceHotspotTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
-        super(fragment, adapter, position);
+    public DeviceHotspotTestTask(TestsFragment fragment) {
+        super(fragment);
     }
 
     @Override
@@ -57,19 +54,19 @@ public class DeviceHotspotTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.Status doInBackground(Void... params) {
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         try {
             final Method method = wifi.getClass().getDeclaredMethod("isWifiApEnabled");
             method.setAccessible(true); //in the case of visibility change in future APIs
             boolean result = (Boolean) method.invoke(wifi);
             if (result) {
-                return TestResult.Result.FAIL;
+                return TestResult.Status.FAIL;
             } else {
-                return TestResult.Result.OK;
+                return TestResult.Status.OK;
             }
         } catch (Exception e) {
-            return TestResult.Result.NOT_TESTED;
+            return TestResult.Status.NOT_TESTED;
         }
 
     }

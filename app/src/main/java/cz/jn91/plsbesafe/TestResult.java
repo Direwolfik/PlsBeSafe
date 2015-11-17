@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import java.io.Serializable;
 
 /**
- * Class containing the test result of given test
+ * Class containing the test status of given test
  * <p/>
  * Created by jn91 on 12.11.2015.
  */
@@ -15,48 +15,48 @@ public class TestResult implements Serializable {
     private static final long serialVersionUID = 0L;
 
     String explanation;
-    Result result;
+    Status status;
     String name;
     TestResolver resolver;
 
     /**
      * Enum that is used to represent the current status of test.
      */
-    public enum Result {
+    public enum Status {
         OK, FAIL, NOT_TESTED, READY, IN_PROGRESS
     }
 
     /**
-     * Creates new Test Result
+     * Creates new Test Status
      *
      * @param explanation String containing the explanation of test
-     * @param result      status of test - initial value should probably be Result.READY
+     * @param status      status of test - initial value should probably be Status.READY
      * @param name        String containing the name of test
      * @param resolver    Instance of TestResolver that handles the results of this test
      */
-    public TestResult(String explanation, Result result, String name, TestResolver resolver) {
+    public TestResult(String explanation, Status status, String name, TestResolver resolver) {
         this.explanation = explanation;
-        this.result = result;
+        this.status = status;
         this.name = name;
         this.resolver = resolver;
     }
 
     /**
-     * Get the result of this test
+     * Get the status of this test
      *
-     * @return Result of test
+     * @return Status of test
      */
-    public Result getResult() {
-        return result;
+    public Status getStatus() {
+        return status;
     }
 
     /**
-     * Set the result of this test
+     * Set the status of this test
      *
-     * @param result current status of the test
+     * @param status current status of the test
      */
-    public void setResult(Result result) {
-        this.result = result;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     /**

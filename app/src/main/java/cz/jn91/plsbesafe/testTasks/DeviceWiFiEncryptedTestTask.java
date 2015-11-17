@@ -12,7 +12,6 @@ import java.util.List;
 
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -26,11 +25,9 @@ public class DeviceWiFiEncryptedTestTask extends BaseTestAsyncTask {
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter  adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public DeviceWiFiEncryptedTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
-        super(fragment, adapter, position);
+    public DeviceWiFiEncryptedTestTask(TestsFragment fragment) {
+        super(fragment);
     }
 
     @Override
@@ -59,7 +56,7 @@ public class DeviceWiFiEncryptedTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.Status doInBackground(Void... params) {
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         List<ScanResult> networkList = wifi.getScanResults();
 
@@ -73,13 +70,13 @@ public class DeviceWiFiEncryptedTestTask extends BaseTestAsyncTask {
                 if (currentSSID.equals(ssid)) {
                     String Capabilities = network.capabilities;
                     if (Capabilities.contains("WPA2") || Capabilities.contains("WPA") || Capabilities.contains("WEP")) {
-                        return TestResult.Result.OK;
+                        return TestResult.Status.OK;
                     } else {
-                        return TestResult.Result.FAIL;
+                        return TestResult.Status.FAIL;
                     }
                 }
             }
         }
-        return TestResult.Result.NOT_TESTED;
+        return TestResult.Status.NOT_TESTED;
     }
 }

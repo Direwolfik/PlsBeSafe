@@ -7,7 +7,6 @@ import android.support.design.widget.Snackbar;
 import cz.jn91.plsbesafe.R;
 import cz.jn91.plsbesafe.TestResult;
 import cz.jn91.plsbesafe.Util.RootUtil;
-import cz.jn91.plsbesafe.adapters.TestTasksAdapter;
 import cz.jn91.plsbesafe.fragments.TestsFragment;
 
 /**
@@ -21,11 +20,9 @@ public class DeviceRootTestTask extends BaseTestAsyncTask {
      * Creates new instance of test case
      *
      * @param fragment fragment in which this task is shown
-     * @param adapter  adapter with test cases
-     * @param position position of test in array, it is used in callback
      */
-    public DeviceRootTestTask(TestsFragment fragment, TestTasksAdapter adapter, int position) {
-        super(fragment, adapter, position);
+    public DeviceRootTestTask(TestsFragment fragment) {
+        super(fragment);
     }
 
     @Override
@@ -54,11 +51,11 @@ public class DeviceRootTestTask extends BaseTestAsyncTask {
     }
 
     @Override
-    protected TestResult.Result doInBackground(Void... params) {
+    protected TestResult.Status doInBackground(Void... params) {
         if (RootUtil.isDeviceRooted()) {
-            return TestResult.Result.FAIL;
+            return TestResult.Status.FAIL;
         } else {
-            return TestResult.Result.OK;
+            return TestResult.Status.OK;
         }
     }
 }

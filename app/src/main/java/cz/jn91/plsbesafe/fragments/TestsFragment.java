@@ -71,30 +71,50 @@ public class TestsFragment extends Fragment {
      */
     private void prepareTests() {
         testAsyncTasks = new ArrayList<>();
-        testAsyncTasks.add(new DeviceEncryptionTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceRootTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceLockScreenTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceBluetoothTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceADBTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceUnknownSourcesTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceWiFiEncryptedTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceHotspotTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceNFCTestTask(this, testsAdapter, testAsyncTasks.size()));
-        testAsyncTasks.add(new DeviceLocationTestTask(this, testsAdapter, testAsyncTasks.size()));
+        testAsyncTasks.add(new DeviceEncryptionTestTask(this));
+        testAsyncTasks.add(new DeviceRootTestTask(this));
+        testAsyncTasks.add(new DeviceLockScreenTestTask(this));
+        testAsyncTasks.add(new DeviceBluetoothTestTask(this));
+        testAsyncTasks.add(new DeviceADBTestTask(this));
+        testAsyncTasks.add(new DeviceUnknownSourcesTestTask(this));
+        testAsyncTasks.add(new DeviceWiFiEncryptedTestTask(this));
+        testAsyncTasks.add(new DeviceHotspotTestTask(this));
+        testAsyncTasks.add(new DeviceNFCTestTask(this));
+        testAsyncTasks.add(new DeviceLocationTestTask(this));
     }
 
 
     /**
      * Callback method for the completed async tascs. This method will run another test or set the current test counter to 0 if there are no more tests.
      */
-    public void runNextTest() {
+    private void runNextTest() {
         if (currentTest < testAsyncTasks.size()) {
             testAsyncTasks.get(currentTest).execute();
-            currentTest++;
+            testsAdapter.getItem(currentTest).setStatus(TestResult.Status.IN_PROGRESS);
+            testsAdapter.notifyDataSetChanged();
         } else {
             currentTest = 0;
         }
-        ;
+    }
+
+    /**
+     * Callback to pass the result of the test and run next test
+     * @param status new status of test
+     */
+    public void passResult(TestResult.Status status){
+        testsAdapter.getItem(currentTest).setStatus(status);
+        testsAdapter.notifyDataSetChanged();
+        currentTest++;
+        runNextTest();
+    }
+
+    /**
+     * Callback to add new test that should be shown in fragment
+     * @param result newly inititated result
+     */
+    public void addNewResult(TestResult result){
+        testsAdapter.add(result);
+        testsAdapter.notifyDataSetChanged();
     }
 
     @Override
