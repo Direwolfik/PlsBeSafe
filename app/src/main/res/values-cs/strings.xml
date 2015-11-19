@@ -32,13 +32,13 @@
     <string name="testDeviceManagerText">dev ma</string>
 
     <string name="testADBName">Ladění USB zakázáno</string>
-    <string name="testADBText">Ladění USB umožňuje komunikaci se zařízením pomocí rozhraní ADB. Díky tomuto rozhraní je možné ovládat zařízení přímo, bez nutnosti využi-tí uživatelského rozhraní. ADB navíc umožňuje vykonávat mnoho příkazů, které mohou výrazně narušit bezpečnost zařízení. Z tohoto důvodu je doporučeno nepovolovat režim ladění USB v případě, že ho uživatel nutně nepotřebuje.</string>
+    <string name="testADBText">Ladění USB umožňuje komunikaci se zařízením pomocí rozhraní ADB. Díky tomuto rozhraní je možné ovládat zařízení přímo, bez nutnosti využití uživatelského rozhraní. ADB navíc umožňuje vykonávat mnoho příkazů, které mohou výrazně narušit bezpečnost zařízení. Z tohoto důvodu je doporučeno nepovolovat režim ladění USB v případě, že ho uživatel nutně nepotřebuje.</string>
 
     <string name="testUnknownName">Neznámé zdroje zakázány</string>
     <string name="testUnknownText">Instalace aplikací z neznámých zdrojů představuje vážné bezpečnostní riziko, neboť umožnuje nainstalovat aplikace získané mimo oficiální distribuční kanály k tomu určené. Takové aplikace pak mohou představovat bezpečnostní hrozbu a mohou být použity k útoku na dané zařízení</string>
 
     <string name="testWifiSecurName">Zabezpečená Wi-Fi</string>
-    <string name="testWifiSecurText">Připojení na Wi-Fi, která není zabezpečena alespoň základním šifrováním je považováno za velké bezpečnostní riziko. Uži-vatel může být na takových sítích snadnou obětí útoku Man-in-the-middle, při kterém může útočník snadno odposlouchávat a modifikovat veškerou síťovou komunikace da-ného zařízení.</string>
+    <string name="testWifiSecurText">Připojení na Wi-Fi, která není zabezpečena alespoň základním šifrováním je považováno za velké bezpečnostní riziko. Uživatel může být na takových sítích snadnou obětí útoku Man-in-the-middle, při kterém může útočník snadno odposlouchávat a modifikovat veškerou síťovou komunikace daného zařízení.</string>
 
     <string name="testNFCName">NFC vypnuto</string>
     <string name="testNFCText">Technologie NFC umožňuje bezdotykovou komunikaci dvou zařízení vybavených touto technologií. Získá-li případný útoční přístup k NFC roz-hraní daného zařízení, může se to pokusit využít k získání kontroly nad tímto zařízením, případně k jiným druhům útoku.</string>

@@ -46,7 +46,7 @@ public class DeviceLocationTestTask extends BaseTestAsyncTask {
 
             @Override
             public Drawable getMenuIcon(Activity activity) {
-                return activity.getResources().getDrawable(R.drawable.ic_settings_input_antenna_white_48dp);
+                return activity.getResources().getDrawable(R.drawable.ic_gps_off_white_48dp);
             }
         };
     }
