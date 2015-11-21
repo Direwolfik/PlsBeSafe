@@ -36,6 +36,16 @@ public class DeviceRootTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected String getPositiveName() {
+        return context.getString(R.string.testRootPositive);
+    }
+
+    @Override
+    protected String getNegativeName() {
+        return context.getString(R.string.testRootNegative);
+    }
+
+    @Override
     protected TestResult.TestResolver getResolver() {
         return new TestResult.TestResolver() {
             @Override

@@ -38,6 +38,16 @@ public class DeviceEncryptionTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected String getPositiveName() {
+        return context.getString(R.string.testEncryptionPositive);
+    }
+
+    @Override
+    protected String getNegativeName() {
+        return context.getString(R.string.testEncryptionNegative);
+    }
+
+    @Override
     protected TestResult.TestResolver getResolver() {
         return new TestResult.TestResolver() {
             @Override

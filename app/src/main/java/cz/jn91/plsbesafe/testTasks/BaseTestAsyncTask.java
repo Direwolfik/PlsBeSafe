@@ -29,7 +29,7 @@ public abstract class BaseTestAsyncTask extends AsyncTask<Void, Void, TestResult
     public BaseTestAsyncTask(TestsFragment fragment) {
         this.fragment = fragment;
         context = fragment.getActivity();
-        TestResult result = new TestResult(getExplanation(), TestResult.Status.READY, getName(), getResolver());
+        TestResult result = new TestResult(getExplanation(), TestResult.Status.READY, getName(), getPositiveName(), getNegativeName(), getResolver());
         fragment.addNewResult(result);
     }
 
@@ -46,6 +46,20 @@ public abstract class BaseTestAsyncTask extends AsyncTask<Void, Void, TestResult
      * @return String with explanation text
      */
     protected abstract String getName();
+
+    /**
+     * Returns the name for this test case. This name should be used on test screen.
+     *
+     * @return String with explanation text
+     */
+    protected abstract String getPositiveName();
+
+    /**
+     * Returns the name for this test case. This name should be used on test screen.
+     *
+     * @return String with explanation text
+     */
+    protected abstract String getNegativeName();
 
     /**
      * Returns the TestResolver for this test

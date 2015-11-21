@@ -41,6 +41,16 @@ public class DeviceWiFiEncryptedTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected String getPositiveName() {
+        return context.getString(R.string.testWifiSecurPositive);
+    }
+
+    @Override
+    protected String getNegativeName() {
+        return context.getString(R.string.testWifiSecurNegative);
+    }
+
+    @Override
     protected TestResult.TestResolver getResolver() {
         return new TestResult.TestResolver() {
             @Override

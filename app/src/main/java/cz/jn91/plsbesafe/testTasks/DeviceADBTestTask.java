@@ -35,6 +35,16 @@ public class DeviceADBTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected String getPositiveName() {
+        return context.getString(R.string.testADBPositive);
+    }
+
+    @Override
+    protected String getNegativeName() {
+        return context.getString(R.string.testADBNegative);
+    }
+
+    @Override
     protected TestResult.TestResolver getResolver() {
         return new TestResult.TestResolver() {
             @Override

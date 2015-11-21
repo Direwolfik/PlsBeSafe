@@ -36,6 +36,16 @@ public class DeviceBluetoothTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected String getPositiveName() {
+        return context.getString(R.string.testBluetoothPositive);
+    }
+
+    @Override
+    protected String getNegativeName() {
+        return context.getString(R.string.testBluetoothNegative);
+    }
+
+    @Override
     protected TestResult.TestResolver getResolver() {
         return new TestResult.TestResolver() {
             @Override

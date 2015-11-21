@@ -39,6 +39,16 @@ public class DeviceHotspotTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected String getPositiveName() {
+        return context.getString(R.string.testHotspotPositive);
+    }
+
+    @Override
+    protected String getNegativeName() {
+        return context.getString(R.string.testHotspotNegative);
+    }
+
+    @Override
     protected TestResult.TestResolver getResolver() {
         return new TestResult.TestResolver() {
             @Override

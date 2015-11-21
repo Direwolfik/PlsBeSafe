@@ -35,6 +35,16 @@ public class DeviceUnknownSourcesTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected String getPositiveName() {
+        return context.getString(R.string.testUnknownPositive);
+    }
+
+    @Override
+    protected String getNegativeName() {
+        return context.getString(R.string.testUnknownNegative);
+    }
+
+    @Override
     protected TestResult.TestResolver getResolver() {
         return new TestResult.TestResolver() {
             @Override

@@ -6,44 +6,69 @@
     <string name="notSupported">Toto nebylo možné otestovat! Požadovaná funkcionalita pravděpodobně není na tomto zařízení podporována.</string>
 
     <string name="resolveProblemMenu">Vyřešit problém</string>
-    <string name="runTestsMenu">Spustit testy</string>
+    <string name="runTestsMenu">Řešit problém</string>
 
     <string name="goToSettingsTitle">Přejít do nastavení</string>
     <string name="goToSettingsText">Tato akce otevře obrazovku nastavení, kde je možné tuto funkcionalitu povolit nebo zakázat</string>
 
     <string name="deviceRooted">Toto zařízení má povolené oprávnění root. Je doporučeno toto oprávnění zakázat, např. pomocí programu SuperSU.</string>
     <!-- explanation texts and names-->
-    <string name="testEncryptionName">Šifrování zařízení aktivní</string>
+
+    <string name="testEncryptionName">Šifrování zařízení</string>
+    <string name="testEncryptionPositive">Šifrování zařízení aktivní</string>
+    <string name="testEncryptionNegative">Šifrování zařízení vypnuto</string>
     <string name="testEncryptionText">Šifrování zařízení napomáhá ochránit zařízení před případným útokem tím, že zašifruje všechny soubory v zařízení. Tyto soubory jsou pak pro útočníka nečitelné, pokud je nedokáže dešifrovat.</string>
 
-    <string name="testRootName">Oprávnění root není dostupné</string>
+    <string name="testRootName">Oprávnění root</string>
+    <string name="testRootPositive">Oprávnění root není dostupné</string>
+    <string name="testRootNegative">Oprávnění root je dostupné</string>
     <string name="testRootText">Možnost přistupovat k právu root je pro mnohá zařízení velice nebezpečná, neboť případným útočníkům a škodlivým aplikacím umožňuje provádět příkazy na nejnižší úrovni operačního systému a tím obejít mnoho bezpečnostních mechanismů zařízení s OS Android</string>
 
-    <string name="testLockScreenName">Zámek obrazovky aktivní</string>
+    <string name="testLockScreenName">Zámek obrazovky</string>
+    <string name="testLockScreenPositive">Zámek obrazovky aktivní</string>
+    <string name="testLockScreenNegative">Zámek obrazovky vypnutý</string>
     <string name="testLockScreenText">Zamykací obrazovka zařízení s OS Android umožňuje zabránit nechtěnému přístupu k datům a osobním informacím uloženým v telefonu. Pomocí zámku obrazovky lze případnému útočníkovi znemožnit jakoukoliv neoprávněnou manipulaci s operačním systémem. Je vhodné použít zabezpečení pomocí PIN kódu, hesla nebo vzoru.</string>
 
-    <string name="testBluetoothName">Bluetooth vypnuto</string>
+    <string name="testBluetoothName">Bluetooth</string>
+    <string name="testBluetoothPositive">Bluetooth vypnuto</string>
+    <string name="testBluetoothNegative">Bluetooth zapnuto</string>
     <string name="testBluetoothText">Rozhraní Bluetooth umožňuje bezdrátovou komunikaci s jinými zařízeními vybavenými touto technologií. Jako takové představuje jisté bezpečnostní riziko pro všechny, kteří mají tuto technologii povolenou i tehdy, když ji zrovna nevyužívají.</string>
 
-    <string name="testHotspotName">Wi-Fi Hotspot vypnut</string>
+    <string name="testHotspotName">Wi-Fi Hotspot</string>
+    <string name="testHotspotPositive">Wi-Fi Hotspot vypnut</string>
+    <string name="testHotspotNegative">Wi-Fi Hotspot zapnut</string>
     <string name="testHotspotText">Přístupový bod Wi-Fi představuje významné bezpečnostní riziko v případě, že se k němu připojí případný útočník. Takový přístupový bod pak poskytuje přístup k síťovému rozhraní telefonu a není-li toto rozhraní zabezpečno, útočník může snadno získat k danému zařízení přístup.</string>
 
-    <string name="testDeviceManagerName">Device Manager Active</string>
-    <string name="testDeviceManagerText">dev ma</string>
+    <!--<string name="testDeviceManagerName">Device Manager Active</string>-->
+    <!--<string name="testDeviceManagerPositive">Device Manager Active</string>-->
+    <!--<string name="testDeviceManagerNegative">Device Manager Active</string>-->
+    <!--<string name="testDeviceManagerText">dev ma</string>-->
 
-    <string name="testADBName">Ladění USB zakázáno</string>
+    <string name="testADBName">Ladění USB</string>
+    <string name="testADBPositive">Ladění USB zakázáno</string>
+    <string name="testADBNegative">Ladění USB povoleno</string>
     <string name="testADBText">Ladění USB umožňuje komunikaci se zařízením pomocí rozhraní ADB. Díky tomuto rozhraní je možné ovládat zařízení přímo, bez nutnosti využití uživatelského rozhraní. ADB navíc umožňuje vykonávat mnoho příkazů, které mohou výrazně narušit bezpečnost zařízení. Z tohoto důvodu je doporučeno nepovolovat režim ladění USB v případě, že ho uživatel nutně nepotřebuje.</string>
 
-    <string name="testUnknownName">Neznámé zdroje zakázány</string>
+    <string name="testUnknownName">Neznámé zdroje</string>
+    <string name="testUnknownPositive">Neznámé zdroje zakázány</string>
+    <string name="testUnknownNegative">Neznámé zdroje povoleny</string>
     <string name="testUnknownText">Instalace aplikací z neznámých zdrojů představuje vážné bezpečnostní riziko, neboť umožnuje nainstalovat aplikace získané mimo oficiální distribuční kanály k tomu určené. Takové aplikace pak mohou představovat bezpečnostní hrozbu a mohou být použity k útoku na dané zařízení</string>
 
-    <string name="testWifiSecurName">Zabezpečená Wi-Fi</string>
+    <string name="testWifiSecurName">Zabezpečení Wi-Fi</string>
+    <string name="testWifiSecurPositive">Wi-Fi zabezpečena</string>
+    <string name="testWifiSecurNegative">Wi-Fi nezabezpečena</string>
     <string name="testWifiSecurText">Připojení na Wi-Fi, která není zabezpečena alespoň základním šifrováním je považováno za velké bezpečnostní riziko. Uživatel může být na takových sítích snadnou obětí útoku Man-in-the-middle, při kterém může útočník snadno odposlouchávat a modifikovat veškerou síťovou komunikace daného zařízení.</string>
 
-    <string name="testNFCName">NFC vypnuto</string>
+    <string name="testNFCName">NFC</string>
+    <string name="testNFCPositive">NFC vypnuto</string>
+    <string name="testNFCNegative">NFC zapnuto</string>
     <string name="testNFCText">Technologie NFC umožňuje bezdotykovou komunikaci dvou zařízení vybavených touto technologií. Získá-li případný útoční přístup k NFC roz-hraní daného zařízení, může se to pokusit využít k získání kontroly nad tímto zařízením, případně k jiným druhům útoku.</string>
 
-    <string name="testGPSName">GPS vypnuto</string>
+    <string name="testGPSName">GPS</string>
+    <string name="testGPSPositive">GPS vypnuto</string>
+    <string name="testGPSNegative">GPS zapnuto</string>
     <string name="testGPSText">Pomocí technologie GPS je možné získat informace o poloze zařízení. Takové informace jsou často velice důležité z hlediska jeho bezpečnosti. Vzhledem k tomu je lepší povolit GPS systém pouze v případě, že je opravdu aktivně využíván.</string>
+    <string name="testDeviceManagerName">dm</string>
+    <string name="testDeviceManagerText">dm</string>
 
 </resources>

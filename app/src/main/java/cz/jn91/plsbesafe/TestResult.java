@@ -12,6 +12,8 @@ public class TestResult  {
     String explanation;
     Status status;
     String name;
+    String positiveName;
+    String negativeName;
     TestResolver resolver;
 
     /**
@@ -29,10 +31,12 @@ public class TestResult  {
      * @param name        String containing the name of test
      * @param resolver    Instance of TestResolver that handles the results of this test
      */
-    public TestResult(String explanation, Status status, String name, TestResolver resolver) {
+    public TestResult(String explanation, Status status, String name, String positiveName, String negativeName, TestResolver resolver) {
         this.explanation = explanation;
         this.status = status;
         this.name = name;
+        this.positiveName = positiveName;
+        this.negativeName = negativeName;
         this.resolver = resolver;
     }
 
@@ -90,10 +94,27 @@ public class TestResult  {
         return resolver;
     }
 
+    /**
+     * Returns the String representing the positive outcome of the test
+     *
+     * @return String that is displayed for positive result
+     */
+    public String getPositiveName() {
+        return positiveName;
+    }
+
+    /**
+     * Returns the String representing the negative outcome of the test
+     *
+     * @return String that is displayed for negative result
+     */
+    public String getNegativeName() {
+        return negativeName;
+    }
 
     /*
-     * Provides the API for resolving problems with given test
-     */
+         * Provides the API for resolving problems with given test
+         */
     public interface TestResolver {
         /**
          * tries to resolve the problem - e.g. by opening the settings

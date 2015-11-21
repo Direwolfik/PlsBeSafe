@@ -37,6 +37,16 @@ public class DeviceLocationTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected String getPositiveName() {
+        return context.getString(R.string.testGPSPositive);
+    }
+
+    @Override
+    protected String getNegativeName() {
+        return context.getString(R.string.testGPSNegative);
+    }
+
+    @Override
     protected TestResult.TestResolver getResolver() {
         return new TestResult.TestResolver() {
             @Override

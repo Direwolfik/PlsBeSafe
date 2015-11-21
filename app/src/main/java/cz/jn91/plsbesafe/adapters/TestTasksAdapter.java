@@ -59,6 +59,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
         holder.tvText.setText(result.getName());
         switch (result.getStatus()) {
             case FAIL:
+                holder.tvText.setText(result.getNegativeName());
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.red));
                 holder.pbLoading.setVisibility(View.GONE);
                 holder.ivResult.setVisibility(View.VISIBLE);
@@ -75,6 +76,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
                 break;
 
             case NOT_TESTED:
+                holder.tvText.setText(result.getName());
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.orange));
                 holder.pbLoading.setVisibility(View.GONE);
                 holder.ivResult.setVisibility(View.VISIBLE);
@@ -90,6 +92,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
                 break;
 
             case OK:
+                holder.tvText.setText(result.getPositiveName());
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.green));
                 holder.pbLoading.setVisibility(View.GONE);
                 holder.ivResult.setVisibility(View.VISIBLE);
@@ -98,6 +101,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
                 break;
 
             case READY:
+                holder.tvText.setText(result.getName());
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.grey));
                 holder.pbLoading.setVisibility(View.GONE);
                 holder.ivResult.setVisibility(View.VISIBLE);
@@ -106,6 +110,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
                 break;
 
             case IN_PROGRESS:
+                holder.tvText.setText(result.getName());
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.grey));
                 holder.pbLoading.setVisibility(View.VISIBLE);
                 holder.ivResult.setVisibility(View.GONE);
