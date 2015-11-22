@@ -64,7 +64,7 @@ public class DeviceLocationTestTask extends BaseTestAsyncTask {
     @Override
     protected TestResult.Status doInBackground(Void... params) {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){ //requires FINE_LOCATION permission on Android lower than 4.4
             return TestResult.Status.FAIL;
         } else {
             return TestResult.Status.OK;
