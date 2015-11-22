@@ -16,6 +16,8 @@ import cz.jn91.plsbesafe.fragments.TestsFragment;
  */
 public class DeviceBluetoothTestTask extends BaseTestAsyncTask {
 
+    private BluetoothAdapter mBluetoothAdapter;
+
     /**
      * Creates new instance of test case
      *
@@ -61,8 +63,17 @@ public class DeviceBluetoothTestTask extends BaseTestAsyncTask {
     }
 
     @Override
+    protected void onPreExecute() {
+        /**
+         *   This has to be done in UI thread because of Android bug
+         *   http://stackoverflow.com/questions/5920578/bluetoothadapter-getdefaultadapter-throwing-runtimeexception-while-not-in-acti
+         */
+
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    }
+
+    @Override
     protected TestResult.Status doInBackground(Void... params) {
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
             return TestResult.Status.NOT_TESTED;
         } else {

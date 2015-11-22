@@ -62,6 +62,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
                 holder.tvText.setText(result.getNegativeName());
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.red));
                 holder.pbLoading.setVisibility(View.GONE);
+                holder.ivResult.clearAnimation(); //animation has to be cleared because it can be made visible or invisible
                 holder.ivResult.setVisibility(View.VISIBLE);
                 holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_highlight_off_white_48dp));
                 holder.ivInfo.setVisibility(View.VISIBLE);
@@ -88,6 +89,7 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
                     }
                 });
                 holder.ivResult.startAnimation(pulse);
+                holder.ivInfo.clearAnimation();
                 holder.ivInfo.setVisibility(View.INVISIBLE);
                 break;
 
@@ -95,8 +97,10 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
                 holder.tvText.setText(result.getPositiveName());
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.green));
                 holder.pbLoading.setVisibility(View.GONE);
+                holder.ivResult.clearAnimation();
                 holder.ivResult.setVisibility(View.VISIBLE);
                 holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_done_white_48dp));
+                holder.ivInfo.clearAnimation();
                 holder.ivInfo.setVisibility(View.INVISIBLE);
                 break;
 
@@ -104,8 +108,10 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
                 holder.tvText.setText(result.getName());
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.grey));
                 holder.pbLoading.setVisibility(View.GONE);
+                holder.ivResult.clearAnimation();
                 holder.ivResult.setVisibility(View.VISIBLE);
                 holder.ivResult.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_cached_white_48dp));
+                holder.ivInfo.clearAnimation();
                 holder.ivInfo.setVisibility(View.INVISIBLE);
                 break;
 
@@ -113,7 +119,9 @@ public class TestTasksAdapter extends ArrayAdapter<TestResult> {
                 holder.tvText.setText(result.getName());
                 holder.llBackground.setBackgroundDrawable(getCardBackgroundWithColor(R.color.grey));
                 holder.pbLoading.setVisibility(View.VISIBLE);
+                holder.ivResult.clearAnimation();
                 holder.ivResult.setVisibility(View.GONE);
+                holder.ivInfo.clearAnimation();
                 holder.ivInfo.setVisibility(View.INVISIBLE);
                 break;
         }

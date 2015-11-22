@@ -2,6 +2,7 @@ package cz.jn91.plsbesafe.testTasks;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.provider.Settings;
 
 import cz.jn91.plsbesafe.R;
@@ -61,10 +62,18 @@ public class DeviceADBTestTask extends BaseTestAsyncTask {
 
     @Override
     protected TestResult.Status doInBackground(Void... params) {
-        if (Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ADB_ENABLED, 0) == 1) {
-            return TestResult.Status.FAIL;
+        if(Build.VERSION.SDK_INT > 17){ //needed due to deprecation of Settings.Secure.ADB_ENABLED
+            if(Settings.Global.getInt(context.getContentResolver(), Settings.Global.ADB_ENABLED,0) == 1){
+                return TestResult.Status.FAIL;
+            } else {
+                return TestResult.Status.OK;
+            }
         } else {
-            return TestResult.Status.OK;
+            if (Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ADB_ENABLED, 0) == 1) {
+                return TestResult.Status.FAIL;
+            } else {
+                return TestResult.Status.OK;
+            }
         }
     }
 }

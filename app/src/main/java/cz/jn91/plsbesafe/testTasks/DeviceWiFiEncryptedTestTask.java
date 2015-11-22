@@ -72,6 +72,9 @@ public class DeviceWiFiEncryptedTestTask extends BaseTestAsyncTask {
 
         WifiInfo wi = wifi.getConnectionInfo();
         String currentSSID = wi.getSSID();
+        if(currentSSID == null){ //on older android, it returns null
+            return TestResult.Status.NOT_TESTED;
+        }
         currentSSID = currentSSID.replaceAll("\"", "");
 
         if (networkList != null) {
